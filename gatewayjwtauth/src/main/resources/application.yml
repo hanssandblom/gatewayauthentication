@@ -1,0 +1,46 @@
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
+server:
+  port: 8901
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    consul:
+      discovery:
+        register: false
+        registerHealthCheck: false
+      config:
+        enabled: false
+      host: localhost
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: fish-service
+          uri: lb://fish-service
+          predicates:
+            - Path=/fish/**
+          filters:
+            - RewritePath=/(?<segment>.*), /$\{segment}
+        - id: birds-service
+          uri: lb://birds-service
+          predicates:
+            - Path=/birds/**
+          filters:
+            - RewritePath=/(?<segment>.*), /$\{segment}
+        - id: cats-service
+          uri: lb://cats-service
+          predicates:
+            - Path=/cats/**
+          filters:
+            - RewritePath=/(?<segment>.*), /$\{segment}
+        - id: zoo-service
+          uri: lb://zoo-service
+          predicates:
+            - Path=/zoo/**
+          filters:
+            - RewritePath=/(?<segment>.*), /$\{segment}
