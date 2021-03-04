@@ -46,7 +46,7 @@ public class SecurityConfiguration {
                         swe.getResponse().setStatusCode(HttpStatus.FORBIDDEN))).and()
                 .authorizeExchange()
                 .pathMatchers("/auth/**").permitAll()
-                .pathMatchers("/persons/**").authenticated()
+                .pathMatchers("/getzoo/**").authenticated()
                 .anyExchange().authenticated()
                 .and().build();
     }

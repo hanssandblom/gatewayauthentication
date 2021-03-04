@@ -1,20 +1,18 @@
 package se.iths.authservice.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="Testdatabas")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     private String username;
     private String password;
     private String roles;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

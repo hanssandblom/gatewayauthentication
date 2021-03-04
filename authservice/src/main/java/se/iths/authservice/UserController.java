@@ -69,7 +69,7 @@ public class UserController {
             String token = Jwts.builder()
                     .setSubject(user.getUsername())
                     .setIssuedAt(new Date(now))
-                    .setExpiration(new Date(now + jwtConfig.getExpiration() * 1000L))  // in milliseconds
+                    .setExpiration(new Date(now + jwtConfig.getExpiration() * 1000))  // in milliseconds
                     .claim("authorities", grantedAuthorities.stream()
                             .map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                     .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret().getBytes())
