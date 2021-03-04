@@ -44,3 +44,9 @@ spring:
             - Path=/zoo/**
           filters:
             - RewritePath=/(?<segment>.*), /$\{segment}
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth/**
+          filters:
+            - RewritePath=/(?<segment>.*), /$\{segment}
